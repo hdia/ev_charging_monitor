@@ -13,7 +13,8 @@ import subprocess
 from datetime import datetime
 
 # Optional: set your repo path here
-REPO_DIR = r"C:\ev_charging_atlas"
+REPO_DIR = r"C:\GitHub\ev_charging_monitor"
+
 
 def run(cmd):
     """Run a shell command and print its output."""

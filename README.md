@@ -1,61 +1,41 @@
 # Australian EV Charging Monitor
 
 A live map of electric vehicle chargers across Australia, updated automatically every 24 hours.  
-Built from open data using the **[Open Charge Map API](https://openchargemap.org/)** and **[OpenStreetMap OSRM](https://project-osrm.org/)**.
+Built using open data from the [Open Charge Map API](https://openchargemap.org/) and [OpenStreetMap OSRM](https://project-osrm.org/).
 
 ---
 
 ## ⚙️ Setup & Hosting
 
-### 1. Repository setup
-Clone or fork this repository, ensuring it contains:
-<<<<<<< HEAD
-- `build_ev_monitor.py` (or the current Python build script)
-=======
-- `build_ev_atlas.py`
->>>>>>> a8756f51f4c7aa5b5eb4c366cb83975710dccd55
-- `requirements.txt`
-- `.github/workflows/rebuild.yml`
-- `data/` and `outputs/` folders
+### 1 · Repository setup
+Clone or fork this repository. It should contain:
 
-### 2. Automatic rebuild
+- `build_ev_monitor_with_urban_centres_real.py` (main Python build script)  
+- `requirements.txt`  
+- `.github/workflows/rebuild.yml`  
+- `data/processed/ocm_australia_latest.csv`  
+- `outputs/index.html`
+
+---
+
+### 2 · Automatic rebuild
 GitHub Actions (see `.github/workflows/rebuild.yml`) runs the Python script every 24 hours, regenerates the map, and commits `outputs/index.html`.
 
-You can also trigger it manually via:
-```
-Actions → Rebuild and Deploy EV Charging Monitor → Run workflow
-```
-
-### 3. Hosting on GitHub Pages
-The site is hosted directly via **GitHub Pages** using the Actions deploy pipeline.  
-Once the workflow runs successfully, your live site will be available at:
-
-> https://hdia.github.io/ev_charging_monitor/
+You can also trigger it manually in the Actions tab:  
+**Actions → Rebuild and Deploy EV Charging Monitor → Run workflow**
 
 ---
 
-## 🗺️ Data Notes
-
-- Data source: [Open Charge Map API](https://openchargemap.org/)
-- Routing: [OSRM](https://project-osrm.org/)
-- Geocoding: [OpenStreetMap Nominatim](https://nominatim.org/)
-- These are open-data services with voluntary reporting. Some operators may not list all of their charging sites or update them regularly, so counts and locations may differ from proprietary maps.
+### 3 · Hosting on GitHub Pages
+The live map is hosted directly via GitHub Pages using the Actions deploy pipeline.  
+After a successful workflow run, the public site is available at:  
+👉 [https://hdia.github.io/ev_charging_monitor/](https://hdia.github.io/ev_charging_monitor/)
 
 ---
 
-## 🧩 Requirements
-
-```
-folium
-branca
-python-dotenv
-pandas
-numpy
-requests
-```
-
----
-
-## 📝 Credits
-Developed at Swinburne University of Technology  
-Data © contributors to OpenStreetMap and Open Charge Map
+### 4 · Data sources & notes
+- **Charger listings:** Open Charge Map API (Australia subset, refreshed daily)  
+- **Urban centres:** ABS *Urban Centres and Localities 2021*  
+- **Routing and proximity:** OpenStreetMap *Nominatim* + *OSRM*  
+- Coverage metrics and equity tables derived from live charger counts within 5 km, 10 km, and 20 km of each population centre.  
+- Snapshot time is shown in the “How to read this map” panel.
