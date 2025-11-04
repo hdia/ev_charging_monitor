@@ -641,10 +641,10 @@ def build_map(df: pd.DataFrame, last_refresh: str, next_refresh: str):
       <div style="font-size:14px; font-weight:600; margin-bottom:6px;">Route planner</div>
                <div style="font-size:11.5px; color:#333; margin-top:6px;"> Use this box to plot a route and highlight chargers within {ROUTE_PROXIMITY_KM:.1f} km.  </div> <br>
       <label>Origin</label>
-      <input id="origin-input" type="text" placeholder="101 Collins Street, Melbourne" list="origin-list" style="width:100%; margin-bottom:6px;" />
+      <input id="origin-input" type="text" placeholder="Melbourne" list="origin-list" style="width:100%; margin-bottom:6px;" />
       <datalist id="origin-list"></datalist>
       <label>Destination</label>
-      <input id="dest-input" type="text" placeholder="601 Hay Street, Perth" list="dest-list" style="width:100%; margin-bottom:6px;" />
+      <input id="dest-input" type="text" placeholder="Perth" list="dest-list" style="width:100%; margin-bottom:6px;" />
       <datalist id="dest-list"></datalist>
       <div style="display:flex; gap:8px; margin-top:6px;">
         <button id="btn-find" style="flex:1; padding:6px 8px;">Find Route</button>
@@ -789,23 +789,47 @@ return unique;
           const o = await geocodeFirst(originTxt, 'o');
           const d = await geocodeFirst(destTxt, 'd');
           if (!o || !d) {{ if (msg) msg.textContent = 'Could not find one or both places. Try being more specific.'; return; }}
+      
+          
+            // --- Build OSRM query ---
+            const osrmBase = "https://router.project-osrm.org";
 
-          const url = `https://router.project-osrm.org/route/v1/driving/${{o.lon}},${{o.lat}};${{d.lon}},${{d.lat}}?overview=full&geometries=geojson`;
-          let geo = null;
-          let totalKm = 0;
-          try {{
-            const resp = await fetch(url);
-            if (!resp.ok) throw new Error('HTTP ' + resp.status);
-            const data = await resp.json();
-            if (!data.routes || !data.routes.length) throw new Error('No route');
-            const route = data.routes[0];
-            geo = route.geometry;
-            totalKm = route.distance ? (route.distance / 1000.0) : 0;
-          }} catch(e) {{
-            console.warn('OSRM error', e);
-            if (msg) msg.textContent = 'Route unavailable. Try a nearby suburb or major city.';
-            return;
-          }}
+            const coordPair = `${{o.lon}},${{o.lat}};${{d.lon}},${{d.lat}}`;
+
+            // Prefer car/driving profile; retry if route not found
+            let url = `${{osrmBase}}/route/v1/driving/${{coordPair}}?overview=full&geometries=geojson`;
+
+
+            let geo = null;
+            let totalKm = 0;
+            let data = null;
+
+            try {{
+                let res = await fetch(url);
+                data = await res.json();
+
+                // Fallback: if OSRM returns no route, try car profile
+                if (!data.routes || data.routes.length === 0) {{
+                    console.warn("Primary OSRM route not found, retrying with car profile...");
+                    url = `${{osrmBase}}/route/v1/car/${{coordPair}}?overview=full&geometries=geojson`;
+                    res = await fetch(url);
+                    data = await res.json();
+                }}
+
+                if (!data.routes || data.routes.length === 0) {{
+                    if (msg) msg.textContent = "Route not found — try a nearby landmark or city centre.";
+                    return;
+                }}
+
+                const route = data.routes[0];
+                geo = route.geometry;
+                totalKm = route.distance ? (route.distance / 1000.0) : 0;
+
+            }} catch(e) {{
+                console.warn("OSRM error", e);
+                if (msg) msg.textContent = "Route unavailable. Try a nearby suburb or major city.";
+                return;
+            }}
 
           routeLayer.clearLayers();
           nearLayer.clearLayers();
@@ -871,7 +895,7 @@ if (maxGap > 300 && chargerCoords.length >= 2) {{
                 const d1 = haversineKm(lat, lon, lat1, lon1);
                 const d2 = haversineKm(lat, lon, lat2, lon2);
                 if (d1 < bestStart) {{ bestStart = d1; startIdx = j; }}
-                if (d2 < bestEnd) {{ bestEnd = d2; endIdx = j; }}
+                if (d2 < bestEnd)  {{ bestEnd  = d2; endIdx   = j; }}
             }}
 
             if (startIdx > endIdx) {{
@@ -891,26 +915,38 @@ if (maxGap > 300 && chargerCoords.length >= 2) {{
     }}
 }}
 
-          // --- Display route info and any warnings ---
-          if (msg) {{
-            msg.innerHTML = `Shortest-distance route between origin and destination found: ${{totalKm.toLocaleString(undefined, {{maximumFractionDigits: 0}})}} km.<br>Chargers within {ROUTE_PROXIMITY_KM:.1f} km along the route are highlighted.`;
-            if (maxGap > 300) {{
-             msg.innerHTML += `<br><span style='color:red;'>⚠️Route includes section(s) with limited chargers within ${{PROX_KM.toFixed(1)}} km. <br> ⚠️Route includes a road stretch up to ${{maxGap.toLocaleString(undefined, {{maximumFractionDigits: 0}})}} km without coverage.</span>`;
-            }}
-          }}
-        }}
-        document.getElementById('btn-find').addEventListener('click', doRoute);
-        document.getElementById('btn-clear').addEventListener('click', function() {{
-          routeLayer.clearLayers();
-          nearLayer.clearLayers();
-          if (nearHeat) {{ try {{ nearHeat.remove(); }} catch(e){{}} nearHeat = null; }}
-          const msg = document.getElementById('route-msg');
-          if (msg) msg.textContent = '';
-        }});
-      }}); // whenMapReady
-    }})();
-    </script>
-    """
+// --- Detect possible ferry crossings or over-water gaps - option 2---
+let ferryNotice = "";
+const minLat = Math.min(o.lat, d.lat);
+if (maxGap > 200 && totalKm > 400 && minLat < -38) {{
+    ferryNotice = "<br>⛴️ Note: route may include a ferry or non-road crossing (e.g., Bass Strait).";
+}}
+
+
+// --- Display route info and any warnings ---
+if (msg) {{
+    msg.innerHTML = `Shortest-distance route between origin and destination found: <b>${{totalKm.toLocaleString(undefined, {{maximumFractionDigits: 0}})}} km</b>.<br>Chargers within ${{PROX_KM.toFixed(1)}} km along the route are highlighted.`;
+    if (maxGap > 300) {{
+        msg.innerHTML += `<br><span style='color:red;'>⚠️ Route includes section(s) with limited chargers within ${{PROX_KM.toFixed(1)}} km.<br>⚠️ Route includes a stretch up to <b>${{maxGap.toLocaleString(undefined, {{maximumFractionDigits: 0}})}} km</b> without coverage.</span>`;
+    }}
+    if (ferryNotice) {{
+        msg.innerHTML += ferryNotice;
+    }}
+}}
+
+}}
+document.getElementById('btn-find').addEventListener('click', doRoute);
+document.getElementById('btn-clear').addEventListener('click', function() {{
+  routeLayer.clearLayers();
+  nearLayer.clearLayers();
+  if (nearHeat) {{ try {{ nearHeat.remove(); }} catch(e){{}} nearHeat = null; }}
+  const msg = document.getElementById('route-msg');
+  if (msg) msg.textContent = '';
+}});
+}}); // whenMapReady
+}})();
+</script>
+"""
     m.get_root().html.add_child(folium.Element(script_html))
 
     m.save(str(OUTPUT_HTML))
