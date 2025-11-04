@@ -1,7 +1,7 @@
 # Australian EV Charging Monitor
 *Visualising access, equity, and reach across Australia’s EV charging network.*
 
-An interactive geospatial national EV charging monitor for Australia’s electric vehicle infrastructure, integrating live data from the [Open Charge Map API](https://openchargemap.org/), population centres from the ABS [Urban Centres and Localities (UCL)](https://www.abs.gov.au/statistics/standards/australian-statistical-geography-standard-asgs-edition-3/jul2021-jun2026/significant-urban-areas-urban-centres-and-localities-section-state/urban-centres-and-localities), and open-source routing via [OSRM (Open Source Routing Machine)](https://project-osrm.org/). Features include dynamic coverage metrics, route-based charger proximity analysis, and population equity summaries, updated daily to reveal where Australia’s charging network is growing - and where gaps remain.
+An interactive geospatial national EV charging monitor for Australia’s electric vehicle infrastructure, integrating live data from the [Open Charge Map API](https://openchargemap.org/), population centres from the ABS [Urban Centres and Localities (UCL)](https://www.abs.gov.au/statistics/standards/australian-statistical-geography-standard-asgs-edition-3/jul2021-jun2026/significant-urban-areas-urban-centres-and-localities-section-state/urban-centres-and-localities), and open-source routing via [OSRM (Open Source Routing Machine)](https://project-osrm.org/), powered by [OpenStreetMap](https://www.openstreetmap.org/) data. Features include dynamic coverage metrics, route-based charger proximity analysis, and population equity summaries, updated daily to reveal where Australia’s charging network is growing - and where gaps remain.
 
 
 ---
