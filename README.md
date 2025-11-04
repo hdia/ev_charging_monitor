@@ -1,7 +1,7 @@
 # Australian EV Charging Monitor
-*italics* Visualising access, equity, and reach across Australia’s EV charging network.*italics*
+*Visualising access, equity, and reach across Australia’s EV charging network.*
 
-An interactive geospatial national EV charging monitor for Australia’s electric vehicle infrastructure, integrating live data from the [Open Charge Map API](https://openchargemap.org/), population centres from the ABS [Urban Centres and Localities (UCL)](https://www.abs.gov.au/statistics/standards/australian-statistical-geography-standard-asgs-edition-3/jul2021-jun2026/significant-urban-areas-urban-centres-and-localities-section-state/urban-centres-and-localities), and open-source routing via [OpenStreetMap OSRM (Open Source Routing Machine)](https://project-osrm.org/). Features include dynamic coverage metrics, route-based charger proximity analysis, and population equity summaries, updated daily to reveal where Australia’s charging network is growing - and where gaps remain.
+An interactive geospatial national EV charging monitor for Australia’s electric vehicle infrastructure, integrating live data from the [Open Charge Map API](https://openchargemap.org/), population centres from the ABS [Urban Centres and Localities (UCL)](https://www.abs.gov.au/statistics/standards/australian-statistical-geography-standard-asgs-edition-3/jul2021-jun2026/significant-urban-areas-urban-centres-and-localities-section-state/urban-centres-and-localities), and open-source routing via [OSRM (Open Source Routing Machine)](https://project-osrm.org/). Features include dynamic coverage metrics, route-based charger proximity analysis, and population equity summaries, updated daily to reveal where Australia’s charging network is growing - and where gaps remain.
 
 
 ---
@@ -37,5 +37,5 @@ After a successful workflow run, the public site is available at:
 - **Charger listings:** Open Charge Map API (Australia subset, refreshed daily)  
 - **Urban centres:** ABS *Urban Centres and Localities 2021*  
 - **Routing and proximity:** OpenStreetMap *Nominatim* + *OSRM*  
-- Coverage metrics and equity tables derived from live charger counts within 5 km, 10 km, and 20 km of each population centre.  
-- Data pull times and network metrics are shown in the "Australian EV charging snapshot" and “How to read this map” panels.
+- Coverage and equity metrics are derived from live charger counts within 5 km, 10 km, and 20 km of each population centre.  
+- Data pull times and network metrics are shown in the "Australian EV charging snapshot" panel.
