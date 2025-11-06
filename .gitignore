@@ -1,0 +1,23 @@
+# Local data and working files
+working/
+ss/
+recovered/
+natural_earth/
+UCL_2021_AUST_GDA2020_SHP/
+__pycache__/
+*.zip
+*.xlsx
+*.csv
+*.png
+
+# System / temporary
+*.log
+*.tmp
+*.bak
+*.swp
+*.DS_Store
+
+# Python environment
+.venv/
+.env/
+
