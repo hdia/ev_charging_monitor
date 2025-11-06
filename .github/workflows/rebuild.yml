@@ -27,14 +27,6 @@ jobs:
       - name: Build EV Charging Monitor
         run: python ev_charging_monitor.py
 
-      - name: Commit updated data file
-        run: |
-          git config --local user.email "actions@github.com"
-          git config --local user.name "github-actions"
-          git add data/processed/ocm_australia_latest.csv
-          git commit -m "Update latest OCM data [skip ci]" || echo "No changes to commit"
-          git push origin main
-
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
