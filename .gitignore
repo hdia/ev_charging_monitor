@@ -1,22 +1,13 @@
-# Local data and working files
+# Ignore only the snapshot folder
 ss/
-recovered/
-natural_earth/
-UCL_2021_AUST_GDA2020_SHP/
-__pycache__/
-*.zip
-*.xlsx
-*.csv
-*.png
 
-# System / temporary
+# Temporary and system files
 *.log
 *.tmp
 *.bak
 *.swp
 *.DS_Store
 
-# Python environment
+# Python environment files
 .venv/
 .env/
-
