@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-#Updated 2025116
+#Updated 2025_11_07
 """
 Australian EV Charging Atlas (Open Charge Map, AU-wide)
 Self-contained folium/Leaflet map with clustering, heatmap, filters, and route search.
@@ -981,6 +981,23 @@ document.getElementById('btn-clear').addEventListener('click', function() {{
 """
     m.get_root().html.add_child(folium.Element(script_html))
 
+# --- Inject cache-control meta tags to force fresh reload ---
+    html_path = Path("outputs/index.html")
+    if html_path.exists():
+        html_text = html_path.read_text(encoding="utf-8")
+        # Insert after <meta charset="utf-8">
+        html_text = html_text.replace(
+            '<meta charset="utf-8">',
+            (
+                '<meta charset="utf-8">\n'
+                '  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">\n'
+                '  <meta http-equiv="Pragma" content="no-cache">\n'
+                '  <meta http-equiv="Expires" content="0">'
+            ),
+        )
+        html_path.write_text(html_text, encoding="utf-8")
+        print(">> Injected cache-busting meta tags into index.html")
+
     m.save(str(OUTPUT_HTML))
     print(f">> Map saved to {OUTPUT_HTML.resolve()}")
        
@@ -1016,15 +1033,23 @@ def main():
             print("!! Backup CSV also unavailable:", e2)
             return
 
-    # timestamps
+
+
+    # --- timestamps (force fresh build time) ---
+    from datetime import datetime, timedelta, timezone
     try:
         from zoneinfo import ZoneInfo
         tz = ZoneInfo("Australia/Melbourne")
     except Exception:
-        tz = timezone(timedelta(hours=10))
+        tz = timezone(timedelta(hours=11))  # Melbourne is UTC+11 during AEDT
+
+    # Always recompute at build time
     now_local = datetime.now(tz)
     last_refresh = now_local.strftime("%d %b %Y %H:%M %Z")
     next_refresh = (now_local + timedelta(hours=24)).strftime("%d %b %Y %H:%M %Z")
+
+    print(f">> Updated timestamp to {last_refresh}")
+
 
     print(">> Building map...")
     build_map(df, last_refresh, next_refresh)
