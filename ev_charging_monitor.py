@@ -47,7 +47,8 @@ ROUTE_PROXIMITY_KM = 5.0
 ROUTE_LINE_WEIGHT = 2.0  # thinner than before (was 5)
 
 #OUTPUT_HTML = Path("outputs/index.html")
-OUTPUT_HTML = Path("index.html")
+# Always save index.html in the repository root (current working directory)
+OUTPUT_HTML = Path(__file__).resolve().parent / "index.html"
 BACKUP_CSV = Path("data/processed/ocm_australia_backup.csv")
 LATEST_SNAPSHOT_CSV = Path("data/processed/ocm_australia_latest.csv")
 
@@ -987,7 +988,7 @@ document.getElementById('btn-clear').addEventListener('click', function() {{
     m.get_root().html.add_child(folium.Element(script_html))
 
 # --- Inject cache-control meta tags to force fresh reload ---
-    html_path = Path("outputs/index.html")
+    html_path = Path("index.html")
     if html_path.exists():
         html_text = html_path.read_text(encoding="utf-8")
         # Insert after <meta charset="utf-8">
@@ -1062,7 +1063,7 @@ def main():
     build_map(df, last_refresh, next_refresh)
     # Ensure Netlify root file timestamp updates
     try:
-        atlas_file = Path("outputs/index.html")
+        atlas_file = Path("index.html")
         os.utime(atlas_file, None)
         print(f">> Updated timestamp for {atlas_file}")
     except Exception as e:
@@ -1070,24 +1071,6 @@ def main():
 
     print(">> Done. Upload index.html to Netlify.")
 
-
-"""
-    # --- Finalise and save ---
-    # Make sure index.html is always written for Netlify
-    try:
-        import shutil
-        OUTPUT_DIR = Path("outputs")
-        atlas_file = OUTPUT_DIR / "index.html"
-        if not atlas_file.exists():
-            print(">> index.html not found, creating it now...")
-        else:
-            print(">> Replacing existing index.html...")
-        shutil.copy(atlas_file, OUTPUT_DIR / "index.html")
-        print(f">> Map copied to {OUTPUT_DIR / 'index.html'}")
-    except Exception as e:
-        print("!! Could not copy map to index.html:", e)
-    print(">> Done. Upload outputs/index.html to Netlify.")
-"""
 
 if __name__ == "__main__":
     main()
