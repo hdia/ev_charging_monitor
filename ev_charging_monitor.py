@@ -51,6 +51,10 @@ OUTPUT_HTML = Path("index.html")
 BACKUP_CSV = Path("data/processed/ocm_australia_backup.csv")
 LATEST_SNAPSHOT_CSV = Path("data/processed/ocm_australia_latest.csv")
 
+# Ensure directories exist on both local and GitHub runner
+for path in [BACKUP_CSV, LATEST_SNAPSHOT_CSV]:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    
 # Map start and bounds for Australia
 MAP_START = {"lat": -28.0, "lon": 140.0, "zoom": 5}
 #MAP_START = {"lat": -25.0, "lon": 140.0, "zoom": 5}
