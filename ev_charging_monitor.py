@@ -46,7 +46,8 @@ ROUTE_PROXIMITY_KM = 5.0
 # Route line style
 ROUTE_LINE_WEIGHT = 2.0  # thinner than before (was 5)
 
-OUTPUT_HTML = Path("outputs/index.html")
+#OUTPUT_HTML = Path("outputs/index.html")
+OUTPUT_HTML = Path("index.html")
 BACKUP_CSV = Path("data/processed/ocm_australia_backup.csv")
 LATEST_SNAPSHOT_CSV = Path("data/processed/ocm_australia_latest.csv")
 
@@ -992,9 +993,11 @@ document.getElementById('btn-clear').addEventListener('click', function() {{
                 '<meta charset="utf-8">\n'
                 '  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">\n'
                 '  <meta http-equiv="Pragma" content="no-cache">\n'
-                '  <meta http-equiv="Expires" content="0">'
+                '  <meta http-equiv="Expires" content="0">\n'
+                '  <meta http-equiv="refresh" content="3600">'
             ),
         )
+
         html_path.write_text(html_text, encoding="utf-8")
         print(">> Injected cache-busting meta tags into index.html")
 
@@ -1061,7 +1064,7 @@ def main():
     except Exception as e:
         print("!! Could not update index.html timestamp:", e)
 
-    print(">> Done. Upload outputs/index.html to Netlify.")
+    print(">> Done. Upload index.html to Netlify.")
 
 
 """
