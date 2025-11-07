@@ -1,5 +1,6 @@
 # Ignore only the snapshot folder
 ss/
+data/
 
 # Temporary and system files
 *.log
