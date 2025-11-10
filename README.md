@@ -44,7 +44,7 @@ After a successful workflow run, the public site is available at:
 ### 5 . Datawrapper Summary: Access to Public EV Chargers by Town Size
 
 A summary of charger access by population range and distance bands is available here:  
-🔗 [View full table on Datawrapper](https://datawrapper.dwcdn.net/WtCq7/15/)
+🔗 [View full table on Datawrapper](https://www.datawrapper.de/_/WtCq7/)
 
 *Note: Figures represent a static snapshot (updated 4 November 2025) and are not refreshed daily like the interactive map.*
 
