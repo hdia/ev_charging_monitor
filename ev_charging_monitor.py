@@ -588,7 +588,7 @@ def build_map(df: pd.DataFrame, last_refresh: str, next_refresh: str):
     # 3) Build bullets (include both lines BEFORE the timestamps)
     
     bullets = [
-        'Data source: <b><a href="https://openchargemap.org/" target="_blank">Open Charge Map API</a></b>',
+        'Data source: <b><a href="https://openchargemap.org/" target="_blank">Open Charge Map API</a></b>',        
         f"Total sites: <b>{thousands(tot_sites)}</b> · Total charge ports: <b>{thousands(tot_ports)}</b>",
     #   f"Total charge ports: <b>{thousands(tot_ports)}</b>",
     #   (
@@ -619,7 +619,7 @@ def build_map(df: pd.DataFrame, last_refresh: str, next_refresh: str):
             f"Within 5 km (<b>{centre_shares[5]:.1f}%</b>) · "
             f"10 km (<b>{centre_shares[10]:.1f}%</b>) · "
             f"20 km (<b>{centre_shares[20]:.1f}%</b>)"
-        ),
+        ),        
         f"Last data pull: <b>{last_refresh}</b>",
         f"Next data pull: <b>{next_refresh}</b>",
     ]
@@ -648,7 +648,8 @@ def build_map(df: pd.DataFrame, last_refresh: str, next_refresh: str):
     HOWTO_FAST_LINE,
     "Charging station availability reflects current data in OCM API at the time of retrieval.",
     "Charger status and uptime can change – always confirm current availability in your network’s app or live sources.",
-    'The Urban Centres Layer represents ABS-defined <a href="https://www.abs.gov.au/statistics/standards/australian-statistical-geography-standard-asgs-edition-3/jul2021-jun2026/significant-urban-areas-urban-centres-and-localities-section-state/urban-centres-and-localities" target="_blank">Urban Centre and Localities (UCL)</a> with population ≥ 500 residents.'
+    'The Urban Centres Layer represents ABS-defined <a href="https://www.abs.gov.au/statistics/standards/australian-statistical-geography-standard-asgs-edition-3/jul2021-jun2026/significant-urban-areas-urban-centres-and-localities-section-state/urban-centres-and-localities" target="_blank">Urban Centre and Localities (UCL)</a> with population ≥ 500 residents.',
+    'Full access summary (4 November 2025): <a href="https://www.datawrapper.de/_/WtCq7/" target="_blank">EV charger access by town size and distance</a><br>',
 ]
 
     howto_html = (
