@@ -40,3 +40,11 @@ After a successful workflow run, the public site is available at:
 - **Routing and proximity:** OpenStreetMap *Nominatim* + *OSRM*  
 - Coverage & equity metrics derived from charger counts within 5km, 10km, and 20km of each population centre.  
 - Data pull times and network metrics are shown in the "Australian EV charging snapshot" panel.
+
+### 5 . Datawrapper Summary: Access to Public EV Chargers by Town Size
+
+A summary of charger access by population range and distance bands is available here:  
+🔗 [View full table on Datawrapper](https://www.datawrapper.de/_/WtCq7/)
+
+*Note: Summary represents a static snapshot (4 November 2025) and is not refreshed daily.*
+
