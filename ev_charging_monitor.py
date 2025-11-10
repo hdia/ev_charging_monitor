@@ -649,7 +649,7 @@ def build_map(df: pd.DataFrame, last_refresh: str, next_refresh: str):
     "Charging station availability reflects current data in OCM API at the time of retrieval.",
     "Charger status and uptime can change – always confirm current availability in your network’s app or live sources.",
     'The Urban Centres Layer represents ABS-defined <a href="https://www.abs.gov.au/statistics/standards/australian-statistical-geography-standard-asgs-edition-3/jul2021-jun2026/significant-urban-areas-urban-centres-and-localities-section-state/urban-centres-and-localities" target="_blank">Urban Centre and Localities (UCL)</a> with population ≥ 500 residents.',
-    'Full access summary (4 November 2025): <a href="https://www.datawrapper.de/_/WtCq7/" target="_blank">EV charger access by town size and distance</a><br>',
+    'Full access summary (static snapshot · 4 November 2025): <a href="https://www.datawrapper.de/_/WtCq7/" target="_blank">EV charger access by town size and distance</a><br>',
 ]
 
     howto_html = (
