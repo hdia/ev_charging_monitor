@@ -46,5 +46,5 @@ After a successful workflow run, the public site is available at:
 A summary of charger access by population range and distance bands is available here:  
 🔗 [View full table on Datawrapper](https://www.datawrapper.de/_/WtCq7/)
 
-*Note: Figures represent a static snapshot (updated 4 November 2025) and are not refreshed daily like the interactive map.*
+*Note: Summary represents a static snapshot (4 November 2025) and is not refreshed daily.*
 
