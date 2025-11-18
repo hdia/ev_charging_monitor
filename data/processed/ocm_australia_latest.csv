@@ -973,7 +973,7 @@ id,title,town,state,usage_type,status,operator,connection_types,power_kw,quantit
 168774,The Gerald Apartment Hotel,Geraldton,Western Australia,Public,Operational,Tesla (Tesla-only charging),Type 2 (Tethered Connector) ,22.0,2.0,-28.7745077,114.6095279,public,operational,False,WA
 168667,Chargefox Moe,Moe,Victoria,Public - Membership Required,Operational,Chargefox,"CCS (Type 2), CHAdeMO",350.0,6.0,-38.184449,146.237563,public,operational,True,VIC
 168666,Lakes Entrance RSL,Lakes Entrance,Victoria,Public - Pay At Location,Operational,(Business Owner at Location),Type 2 (Socket Only),22.0,1.0,-37.880698,147.981029,public,operational,False,VIC
-168665,The Cape Display Centre,Cape Paterson,Victoria,Public,Operational,Chargefox,CCS (Type 2),50.0,2.0,-38.66802433496106,145.60558849121276,public,operational,True,VIC
+168665,The Cape Display Centre,Cape Paterson,Victoria,Public,Operational,Chargefox,CCS (Type 2),30.0,1.0,-38.66819619396576,145.60559237161647,public,operational,False,VIC
 168556,Ikea Canberra,Pialligo,ACT,"Private - For Staff, Visitors or Customers",Operational,(Business Owner at Location),Type 2 (Socket Only),22.0,4.0,-35.29550797984516,149.18685336825467,private,operational,False,ACT
 168544,Lake Grace Fast Charge ,Lake Grace,Western Australia,Public - Membership Required,Operational,Chargefox,"CCS (Type 2), CHAdeMO",50.0,2.0,-33.100724201932884,118.46234238122247,public,operational,True,WA
 168484,Electric Highway Tasmania - Geeveston,Geeveston,Tasmania,Public - Membership Required,Operational,Electric Highway Tasmania,"CCS (Type 2), CHAdeMO",50.0,2.0,-43.1634,146.92688,public,operational,True,TAS
