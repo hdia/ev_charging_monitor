@@ -118,7 +118,7 @@ id,title,town,state,usage_type,status,operator,connection_types,power_kw,quantit
 307759,Ampol Foodary,Winchelsea,Victoria,Public - Membership Required,Operational,Ampol AmpCharge,"CCS (Type 2), CHAdeMO",180.0,2.0,-38.24620744489461,143.98330610676584,public,operational,True,VIC
 307698,Eastlake Parade - Streetlight SL217828,Kingston,ACT,Public,Operational,Thundergrid,Type 2 (Socket Only),22.0,1.0,-35.312486897855344,149.14620754929297,public,operational,False,ACT
 307478,Melville City - LeisureFit,Melville City,WA,Public - Membership Required,Planned For Future Date,Chargehub,Type 2 (Socket Only),22.0,2.0,-32.03968803198156,115.83200365710911,public,unknown,False,WA
-307477,Melville City - City Hall,Melville City,,Public - Membership Required,Planned For Future Date,Chargehub,CCS (Type 2),60.0,2.0,-32.03255844314117,115.83235548321863,public,unknown,True,UNK
+307477,Melville City - City Hall,Melville City,,Public - Membership Required,Operational,Chargehub,CCS (Type 2),60.0,2.0,-32.0322316337417,115.83247239799903,public,operational,True,UNK
 306891,Buckland Kent St,Buckland,Tasmania,Public - Membership Required,Operational,(Unknown Operator),Type 2 (Tethered Connector) ,22.0,1.0,-42.60668821556477,147.71852154472168,public,operational,False,TAS
 306858,Buckland Kent St,Buckland,Tasmania,Public,Operational,(Unknown Operator),Type 2 (Tethered Connector) ,22.0,1.0,-42.60669976786134,147.7185327664647,public,operational,False,TAS
 306743,Armadale Fitness and Auqatic Center,Armadale City,WA,Public - Membership Required,Operational,Chargehub,Type 2 (Socket Only),22.0,4.0,-32.13378217875158,116.00360230509733,public,operational,False,WA
