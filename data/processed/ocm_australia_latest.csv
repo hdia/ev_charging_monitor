@@ -282,7 +282,7 @@ id,title,town,state,usage_type,status,operator,connection_types,power_kw,quantit
 273755,Civic Centre,Werribee,Victoria,Public - Membership Required,Operational,Chargefox,"CCS (Type 2), CHAdeMO",50.0,4.0,-37.897374392712145,144.67054059560462,public,operational,True,VIC
 273535,EV Charging Australia,Beaudesert,Queensland,Public - Membership Required,Operational,Chargefox,CCS (Type 2),40.0,2.0,-27.973719,152.994503,public,operational,False,QLD
 273534,ENGIE - Chadstone,Chadstone,Victoria,Public - Membership Required,Operational,Chargefox,"CCS (Type 2), CHAdeMO",100.0,4.0,-37.884370226319035,145.08316779641655,public,operational,True,VIC
-273474,Merredin (WA EV Highway),Merredin,Western Australia,Public,Operational,WA EV Network (AU),"CCS (Type 2), Type 2 (Socket Only)",150.0,3.0,-31.482388441408943,118.27832297090504,public,operational,True,WA
+273474,Merredin (WA EV Highway),Merredin,Western Australia,Public,Operational,WA EV Network (AU),"CCS (Type 2), Type 2 (Socket Only)",150.0,3.0,-31.482505370896668,118.2781852110237,public,operational,True,WA
 273458,Carnarvon (WA EV Network),Carnarvon,Western Australia,Public - Membership Required,Operational,WA EV Network (AU),"CCS (Type 2), Type 2 (Socket Only)",150.0,3.0,-24.883472420392252,113.65628450455051,public,operational,True,WA
 273437,East Brisbane [bp pulse],East Brisbane,Queensland,Public - Membership Required,Operational,BP Pulse (AU),CCS (Type 2),75.0,2.0,-27.479742,153.043682,public,operational,True,QLD
 273436,Wiley Park [bp pulse],Wiley Park,New South Wales,Public - Membership Required,Operational,BP Pulse (AU),"CCS (Type 2), CHAdeMO",75.0,2.0,-33.919392020719556,151.06669418522023,public,operational,True,NSW
