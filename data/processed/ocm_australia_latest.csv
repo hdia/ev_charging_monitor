@@ -1,4 +1,7 @@
 id,title,town,state,usage_type,status,operator,connection_types,power_kw,quantity,lat,lon,usage_simple,status_simple,is_fast,state_abbrev
+470244,Scarborough Beach Road,Osbourne Park,WA,Public - Membership Required,Operational,(Unknown Operator),CCS (Type 2),60.0,2.0,-31.904578816550888,115.80624524662517,public,operational,True,WA
+470243,Osborne Park Supercharger,Osbourne Park,WA,Public - Membership Required,Planned For Future Date,Tesla (including non-tesla),CCS (Type 2),250.0,6.0,-31.90969571694111,115.81261416287998,public,unknown,True,WA
+470241,Subiaco DC Charger,Subiaco,WA,Public - Membership Required,Planned For Future Date,Chargefox,"CCS (Type 2), CHAdeMO",75.0,4.0,-31.943967463962927,115.82864117108204,public,unknown,True,WA
 462699,Donato,Mt Martha,Victoria,Public - Membership Required,Operational,(Unknown Operator),Unknown,,2.0,-38.256545398294726,145.0374398950537,public,operational,False,VIC
 462383,Evie Mansfield,Mansfield,VIC,Public - Membership Required,Operational,Evie,"CCS (Type 2), CHAdeMO",50.0,2.0,-37.05103784342149,146.08673665423203,public,operational,True,VIC
 461964,Kennington Village Shopping Centre,Bendigo,Victoria,Public,Operational,(Unknown Operator),CCS (Type 2),,2.0,-36.77522424001277,144.305953060746,public,operational,False,VIC
