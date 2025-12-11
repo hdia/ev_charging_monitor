@@ -1,4 +1,5 @@
 id,title,town,state,usage_type,status,operator,connection_types,power_kw,quantity,lat,lon,usage_simple,status_simple,is_fast,state_abbrev
+470793,Serpentine  Jarahdale Municipal Charger,Mundijong,Western Australia,Public - Membership Required,Operational,Chargefox,Type 2 (Socket Only),22.0,1.0,-32.29770145683969,115.98462064728506,public,operational,False,WA
 470672,Manjimup NRMA,Manjimup,Western Australia,Public - Membership Required,Operational,NRMA,"CCS (Type 2), CHAdeMO",180.0,4.0,-34.23994388198981,116.1481549246804,public,operational,True,WA
 470663,Eneabba NRMA,,Western Australia,Public - Membership Required,Operational,Chargefox,"CCS (Type 2), CHAdeMO",180.0,4.0,-29.820973736299308,115.26611873091292,public,operational,True,WA
 470502,The Promenade,Australind,Western Australia,Public - Membership Required,Planned For Future Date,Chargefox,CCS (Type 2),100.0,2.0,-33.28240261266069,115.74093768217693,public,unknown,True,WA
