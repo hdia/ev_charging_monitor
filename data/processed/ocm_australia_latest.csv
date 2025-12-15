@@ -1088,7 +1088,7 @@ id,title,town,state,usage_type,status,operator,connection_types,power_kw,quantit
 149219,Chargefox Kings Meadows,Kings Meadows,Tas,Public - Pay At Location,Operational,Chargefox,"CCS (Type 2), CHAdeMO",350.0,4.0,-41.468256846135944,147.158722496525,public,operational,True,TAS
 149179,McDonald's Drive-Thru Armadale,Armadale,Western Australia,Public - Membership Required,Operational,Chargefox,Type 2 (Socket Only),22.0,2.0,-32.15002076557034,116.01893455966706,public,operational,False,WA
 148545,Wallsend [NRMA],Wallsend,NSW,Public,Operational,NRMA,"CCS (Type 2), CHAdeMO",50.0,4.0,-32.90294720367186,151.66968441053905,public,operational,True,NSW
-148535,Bridgetown Shire,Bridgetown,WA,Public - Membership Required,Temporarily Unavailable,Chargestar (AU),"CCS (Type 2), CHAdeMO, Type 1 (J1772), Type 2 (Tethered Connector) ",50.0,4.0,-33.959312716778186,116.13826934719259,public,partial,True,WA
+148535,Bridgetown Shire,Bridgetown,WA,Public - Membership Required,Not Operational,Chargestar (AU),"CCS (Type 2), CHAdeMO, Type 1 (J1772), Type 2 (Tethered Connector) ",50.0,4.0,-33.959312716778186,116.13826934719259,public,operational,True,WA
 148518,Cockburn City,Spearwood,WA,Public,Operational,(Unknown Operator),"Type I (AS 3112), Unknown",7.0,4.0,-32.10025888377409,115.78420217798998,public,operational,False,WA
 148394,Brookton Roadhouse,Brookton,WA,Public,Operational,Chargestar (AU),Type 2 (Socket Only),22.0,1.0,-32.36587280589187,117.00898342794426,public,operational,False,WA
 148393,Williams Woolshed,Williams,WA,Public - Notice Required,Not Operational,Tesla (Tesla-only charging),"Tesla (Model S/X), Three Phase 5-Pin (AS/NZ 3123)",11.0,2.0,-33.0251679447563,116.878630733403,public,operational,False,WA
@@ -1212,7 +1212,7 @@ id,title,town,state,usage_type,status,operator,connection_types,power_kw,quantit
 70034,Cockburn Gateway Shopping City,Cockburn ,WA,Public - Membership Required,Operational,Chargestar (AU),Type 2 (Socket Only),22.0,2.0,-32.1311632744087,115.85675239563,public,operational,False,WA
 70021,Psaros Depot,East Perth ,,(Unknown),Operational,(Unknown Operator),Type 1 (J1772),7.0,1.0,-31.9465882,115.8684012,unknown,operational,False,UNK
 70019,Stockland baldivis ,Baldivis ,,Public - Membership Required,Operational,(Business Owner at Location),"Tesla (Model S/X), Type 2 (Socket Only)",22.0,3.0,-32.332038197451894,115.81543780164884,public,operational,False,UNK
-66046,Donnybrook Shire,Donnybrook‎,WA‎,(Unknown),Operational,RAC Electric Highway/ChargeStar,"CCS (Type 2), CHAdeMO, Type 1 (J1772), Type 2 (Socket Only)",50.0,4.0,-33.574681033694176,115.82452538723692,unknown,operational,True,WA‎
+66046,Donnybrook Shire,Donnybrook‎,WA‎,(Unknown),Not Operational,RAC Electric Highway/ChargeStar,"CCS (Type 2), CHAdeMO, Type 1 (J1772), Type 2 (Socket Only)",50.0,4.0,-33.574681033694176,115.82452538723692,unknown,operational,True,WA‎
 66044,RAC Electric Highway Harvey,Harvey‎,WA‎,Public - Membership Required,Operational,Chargefox,"CCS (Type 2), CHAdeMO, Type 2 (Socket Only)",50.0,3.0,-33.079053,115.896327,public,operational,True,WA‎
 66042,Nannup Fast Charger,Nannup‎,WA‎,Public,Operational,Chargestar (AU),"CCS (Type 2), CHAdeMO, Type 2 (Socket Only)",50.0,3.0,-33.979816,115.763459,public,operational,True,WA‎
 66041,Margaret River RAC Electric Highway,Margaret River,WA,Public - Membership Required,Operational,Chargefox,"CCS (Type 2), CHAdeMO, Type 2 (Socket Only)",50.0,3.0,-33.95358142418849,115.070896629059,public,operational,True,WA
