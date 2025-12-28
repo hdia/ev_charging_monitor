@@ -1,4 +1,5 @@
 id,title,town,state,usage_type,status,operator,connection_types,power_kw,quantity,lat,lon,usage_simple,status_simple,is_fast,state_abbrev
+471411,Kaniva Tesla Supercharger,Kaniva,VIC,Public,Operational,Tesla (including non-tesla),Unknown,250.0,1.0,-36.37875081316521,141.23908092739225,public,operational,True,VIC
 471035,"Gin Gin, QLD - Dear St",Gin Gin,Queensland,Public - Membership Required,Operational,Tesla (including non-tesla),CCS (Type 2),250.0,6.0,-24.989456028418857,151.95345505093815,public,operational,True,QLD
 471034,Albury Showground,North Albury,NSW,Public,Operational,Exploren,Type 2 (Socket Only),22.0,1.0,-36.06509679862696,146.93423532068664,public,operational,False,NSW
 471033,Dog on the Tuckerbox,Gundagai,New South Wales,Public - Membership Required,Operational,NRMA,CCS (Type 2),60.0,2.0,-35.00129644033861,148.11056333609463,public,operational,True,NSW
