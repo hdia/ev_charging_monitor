@@ -225,7 +225,7 @@ id,title,town,state,usage_type,status,operator,connection_types,power_kw,quantit
 289971,Narrogin Memorial Park ,Narrogin ,wa,Public - Membership Required,Operational,Chargefox,Type 2 (Socket Only),22.0,1.0,-32.934143432527556,117.17480124057863,public,operational,False,WA
 289970,Old Courthouse Museum ,Narrogin,Western Australia,Public - Membership Required,Operational,WA EV Network (AU),Type 2 (Socket Only),22.0,1.0,-32.933670519982606,117.17677737808447,public,operational,False,WA
 289312,Wyalkatchem Community Resource Center,Wyalkatchem,WA,Public,Operational,(Unknown Operator),Type 2 (Tethered Connector) ,22.0,1.0,-31.179597642152913,117.37944093832061,public,operational,False,WA
-289309,Car Park,Warwick,Queensland,Public,Operational,(Unknown Operator),"CCS (Type 2), CHAdeMO",,3.0,-28.21735094177685,152.03086649397966,public,operational,False,QLD
+289309,Car Park,Warwick,Queensland,Public,Operational,iCharge (AL),"CCS (Type 2), CHAdeMO",,3.0,-28.21735094177685,152.03086649397966,public,operational,False,QLD
 289009,Warnambool Tourist Information Centre,Warnambool,Victoria,Public,Operational,Chargefox,"CCS (Type 2), CHAdeMO",50.0,2.0,-38.389181,142.484993,public,operational,True,VIC
 288968,Coles Bairnsdale,Bairnsdale,Victoria,Public - Membership Required,Operational,Tesla (Tesla-only charging),CCS (Type 2),250.0,3.0,-37.82480937950314,147.63246014953563,public,operational,True,VIC
 288939,Bairnsdale Coles,Bairnsdale,Victoria,Public,Operational,Tesla (Tesla-only charging),CCS (Type 2),250.0,3.0,-37.82454530904592,147.6327352303539,public,operational,True,VIC
