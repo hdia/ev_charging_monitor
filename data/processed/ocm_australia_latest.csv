@@ -1,4 +1,5 @@
 id,title,town,state,usage_type,status,operator,connection_types,power_kw,quantity,lat,lon,usage_simple,status_simple,is_fast,state_abbrev
+472388,Balladonia - WA EV Network,Balladonia,Western Australia,Public - Membership Required,Operational,Chargefox,"CCS (Type 2), Type 2 (Socket Only)",50.0,3.0,-32.35432951007393,123.61954850785787,public,operational,True,WA
 471411,Kaniva Tesla Supercharger,Kaniva,VIC,Public,Operational,Tesla (including non-tesla),Unknown,250.0,1.0,-36.37875081316521,141.23908092739225,public,operational,True,VIC
 471035,"Gin Gin, QLD - Dear St",Gin Gin,Queensland,Public - Membership Required,Operational,Tesla (including non-tesla),CCS (Type 2),250.0,6.0,-24.989456028418857,151.95345505093815,public,operational,True,QLD
 471034,Albury Showground,North Albury,NSW,Public,Operational,Exploren,Type 2 (Socket Only),22.0,1.0,-36.06509679862696,146.93423532068664,public,operational,False,NSW
@@ -728,7 +729,7 @@ id,title,town,state,usage_type,status,operator,connection_types,power_kw,quantit
 191160,Bankstown [Evie],Bankstown,NSW,Public - Membership Required,Operational,Evie,"CCS (Type 2), CHAdeMO",50.0,4.0,-33.93201456375411,151.03015532131081,public,operational,True,NSW
 191128,Devonport Supercharger,Devonport,Tasmania,Public - Membership Required,Operational,Tesla (Tesla-only charging),CCS (Type 2),250.0,3.0,-41.17996296543798,146.36733778871076,public,operational,True,TAS
 191127,Evie Networks - Westbury,Westbury,Tasmania,Public - Membership Required,Operational,Evie,"CCS (Type 2), CHAdeMO",350.0,4.0,-41.52579826718715,146.845108555965,public,operational,True,TAS
-191063,Caiguna Roadhouse,Caiguna,WA,Public - Notice Required,Operational,(Business Owner at Location),"CCS (Type 2), CHAdeMO",50.0,2.0,-32.270905524317335,125.48817309652998,public,operational,True,WA
+191063,Caiguna - WA EV Network,Caiguna,WA,Public - Membership Required,Operational,(Business Owner at Location),"CCS (Type 2), Type 2 (Socket Only)",30.0,3.0,-32.270905524317335,125.48817309652998,public,operational,False,WA
 191062,Audi Centre Sydney ,Zetland,NSW,Public - Membership Required,Operational,Chargefox,CCS (Type 2),165.0,1.0,-33.906943843362484,151.2131655272031,public,operational,True,NSW
 191055,Collingwood Library,Abbotsford,VIC,Public - Membership Required,Operational,Evie,"CCS (Type 2), CHAdeMO",50.0,4.0,-37.80446562888998,144.99324369474311,public,operational,True,VIC
 191052,Woolworths Kireawee,Kirrawee, NSW ,Public - Membership Required,Operational,Chargefox,Type 2 (Socket Only),22.0,4.0,-34.03429800987962,151.0734299224497,public,operational,False,NSW
