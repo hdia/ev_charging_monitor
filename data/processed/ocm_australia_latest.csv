@@ -1,4 +1,5 @@
 id,title,town,state,usage_type,status,operator,connection_types,power_kw,quantity,lat,lon,usage_simple,status_simple,is_fast,state_abbrev
+472991,Mandurah Forum Mall,Mandurah,Western Australia,Public - Membership Required,Operational,Chargefox,CCS (Type 2),150.0,2.0,-32.53577960295785,115.74472408771112,public,operational,True,WA
 472388,Balladonia - WA EV Network,Balladonia,Western Australia,Public - Membership Required,Operational,Chargefox,"CCS (Type 2), Type 2 (Socket Only)",50.0,3.0,-32.35432951007393,123.61954850785787,public,operational,True,WA
 471411,Kaniva Tesla Supercharger,Kaniva,VIC,Public,Operational,Tesla (including non-tesla),Unknown,250.0,1.0,-36.37875081316521,141.23908092739225,public,operational,True,VIC
 471035,"Gin Gin, QLD - Dear St",Gin Gin,Queensland,Public - Membership Required,Operational,Tesla (including non-tesla),CCS (Type 2),250.0,6.0,-24.989456028418857,151.95345505093815,public,operational,True,QLD
