@@ -33,4 +33,9 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: .
+
+      - name: Check built index timestamp
+        run: |
+          grep -n "Last data pull" index.html | head -5 || true
+          grep -n "10 Nov 2025" index.html | head -5 || true
           
