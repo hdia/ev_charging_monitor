@@ -251,10 +251,8 @@ def normalise_ocm(pois: list[dict]) -> pd.DataFrame:
 def normalise_state(s: str | None) -> str:
     if s is None:
         return "UNK"
-    if isinstance(s, float):
-        if pd.isna(s):
-            return "UNK"
-        s = str(s)
+    if pd.isna(s):
+        return "UNK"
     if not isinstance(s, str):
         s = str(s)
 
@@ -263,7 +261,7 @@ def normalise_state(s: str | None) -> str:
         return "UNK"
 
     key = s.lower()
-    return STATE_MAP.get(key, s.upper() if len(s) <= 4 else "UNK")
+    return STATE_MAP.get(key, s.upper() if len(s) <= 4 else "UNK")    
 
 # State normalisation for per-state counts
 STATE_MAP = {
@@ -305,7 +303,8 @@ def enrich_dataframe(df: pd.DataFrame) -> pd.DataFrame:
     df["usage_simple"] = df["usage_type"].apply(classify_usage_simple)
     df["status_simple"] = df["status"].apply(classify_status_simple)
     df["is_fast"] = df["power_kw"].fillna(0) >= FAST_KW
-    df["state_abbrev"] = df["state"].apply(normalise_state)
+#   df["state_abbrev"] = df["state"].apply(normalise_state)
+    df["state_abbrev"] = df["state"].fillna("UNK").apply(normalise_state)
     return df
 
 # ============================================================
