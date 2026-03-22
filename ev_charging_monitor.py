@@ -172,6 +172,82 @@ def fetch_ocm_au(api_key: str | None) -> list[dict]:
     print(f">> Received {len(data)} items")
     return data
 
+
+def normalise_ocm(pois: list[dict]) -> pd.DataFrame:
+    rows = []
+
+    for p in pois:
+        if not isinstance(p, dict):
+            continue
+
+        addr = p.get("AddressInfo")
+        addr = addr if isinstance(addr, dict) else {}
+
+        conns = p.get("Connections")
+        conns = conns if isinstance(conns, list) else []
+
+        op = p.get("OperatorInfo")
+        op = op if isinstance(op, dict) else {}
+
+        usage = p.get("UsageType")
+        usage = usage if isinstance(usage, dict) else {}
+
+        status = p.get("StatusType")
+        status = status if isinstance(status, dict) else {}
+
+        max_power = None
+        total_q = 0
+        conn_titles = set()
+
+        for c in conns:
+            if not isinstance(c, dict):
+                continue
+
+            try:
+                pw = c.get("PowerKW", c.get("ConnectionPowerKW"))
+                if pw is not None:
+                    pwf = float(pw)
+                    max_power = pwf if (max_power is None or pwf > max_power) else max_power
+            except Exception:
+                pass
+
+            q = c.get("Quantity", 1)
+            try:
+                total_q += int(q) if q is not None else 1
+            except Exception:
+                total_q += 1
+
+            ct = c.get("ConnectionType")
+            ct = ct if isinstance(ct, dict) else {}
+
+            ct_title = ct.get("Title") or ""
+            if isinstance(ct_title, str) and ct_title.strip():
+                conn_titles.add(ct_title.strip())
+
+        rows.append({
+            "id": p.get("ID"),
+            "title": addr.get("Title"),
+            "town": addr.get("Town"),
+            "state": addr.get("StateOrProvince"),
+            "usage_type": usage.get("Title"),
+            "status": status.get("Title"),
+            "operator": op.get("Title"),
+            "connection_types": ", ".join(sorted(conn_titles)) if conn_titles else "",
+            "power_kw": max_power,
+            "quantity": total_q if total_q > 0 else None,
+            "lat": addr.get("Latitude"),
+            "lon": addr.get("Longitude"),
+        })
+
+    df = pd.DataFrame.from_records(rows)
+
+    for c in ["lat", "lon", "power_kw", "quantity"]:
+        if c in df.columns:
+            df[c] = pd.to_numeric(df[c], errors="coerce")
+
+    df = df.dropna(subset=["lat", "lon"]).copy()
+    return df
+
 def normalise_state(s: str | None) -> str:
     if s is None:
         return "UNK"
