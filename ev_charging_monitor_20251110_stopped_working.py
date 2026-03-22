@@ -174,54 +174,34 @@ def fetch_ocm_au(api_key: str | None) -> list[dict]:
 
 def normalise_ocm(pois: list[dict]) -> pd.DataFrame:
     rows = []
-
     for p in pois:
-        if not isinstance(p, dict):
-            continue
-
-        addr = p.get("AddressInfo")
-        addr = addr if isinstance(addr, dict) else {}
-
-        conns = p.get("Connections")
-        conns = conns if isinstance(conns, list) else []
-
-        op = p.get("OperatorInfo")
-        op = op if isinstance(op, dict) else {}
-
-        usage = p.get("UsageType")
-        usage = usage if isinstance(usage, dict) else {}
-
-        status = p.get("StatusType")
-        status = status if isinstance(status, dict) else {}
+        addr = p.get("AddressInfo") or {}
+        conns = p.get("Connections") or []
+        op = p.get("OperatorInfo") or {}
+        usage = p.get("UsageType") or {}
+        status = p.get("StatusType") or {}
 
         max_power = None
         total_q = 0
         conn_titles = set()
-
         for c in conns:
-            if not isinstance(c, dict):
+            if not c: 
                 continue
-
             try:
                 pw = c.get("PowerKW", c.get("ConnectionPowerKW"))
                 if pw is not None:
-                    pwf = float(pw)
-                    max_power = pwf if (max_power is None or pwf > max_power) else max_power
+                    pwf = float(pw); max_power = pwf if (max_power is None or pwf > max_power) else max_power
             except Exception:
                 pass
-
             q = c.get("Quantity", 1)
             try:
                 total_q += int(q) if q is not None else 1
             except Exception:
                 total_q += 1
-
-            ct = c.get("ConnectionType")
-            ct = ct if isinstance(ct, dict) else {}
-
+            ct = c.get("ConnectionType") or {}
             ct_title = ct.get("Title") or ""
-            if isinstance(ct_title, str) and ct_title.strip():
-                conn_titles.add(ct_title.strip())
+            if ct_title:
+                conn_titles.add(ct_title)
 
         rows.append({
             "id": p.get("ID"),
@@ -237,14 +217,11 @@ def normalise_ocm(pois: list[dict]) -> pd.DataFrame:
             "lat": addr.get("Latitude"),
             "lon": addr.get("Longitude"),
         })
-
     df = pd.DataFrame.from_records(rows)
-
-    for c in ["lat", "lon", "power_kw", "quantity"]:
+    for c in ["lat","lon","power_kw","quantity"]:
         if c in df.columns:
             df[c] = pd.to_numeric(df[c], errors="coerce")
-
-    df = df.dropna(subset=["lat", "lon"]).copy()
+    df = df.dropna(subset=["lat","lon"]).copy()
     return df
 
 # State normalisation for per-state counts
@@ -1052,7 +1029,6 @@ def main():
         print(f">> Wrote latest snapshot to {LATEST_SNAPSHOT_CSV}")
     except Exception as e:
         print("!! Live fetch failed:", e)
-        raise
         try:
             df = pd.read_csv(BACKUP_CSV)
             for c in ["power_kw","quantity","usage_type","status","operator","connection_types"]:
