@@ -26,6 +26,14 @@ jobs:
 
       - name: Build EV Charging Monitor
         run: python ev_charging_monitor.py
+
+      - name: Inspect built index
+        run: |
+          pwd
+          ls -la
+          echo "Searching built index for timestamp markers..."
+          grep -n "Last data pull" index.html | head -5 || true
+          grep -n "10 Nov 2025" index.html | head -5 || true
       
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
