@@ -1074,7 +1074,9 @@ document.getElementById('btn-clear').addEventListener('click', function() {{
 
     m.save(str(OUTPUT_HTML))
     print(f">> Map saved to {OUTPUT_HTML.resolve()}")
-       
+
+
+
 # ============================================================
 # 6) Main
 # ============================================================
@@ -1082,10 +1084,16 @@ def main():
     print(">> Australian EV Charging Atlas (v6)")
     ensure_dirs()
     load_dotenv()
-    api_key = os.getenv("OCM_API_KEY", "").strip()
-    if api_key: print(">> Using OCM_API_KEY (loaded from .env)")
-    else: print("!! No OCM_API_KEY found. Proceeding without header.")
 
+    api_key = os.getenv("OCM_API_KEY", "").strip()
+
+    if api_key:
+        print(">> Using OCM_API_KEY (loaded from .env)")
+        print(f">> OCM_API_KEY length: {len(api_key)}")
+        print(f">> OCM_API_KEY last 4 chars: {api_key[-4:]}")
+    else:
+        print("!! No OCM_API_KEY found. Proceeding without API key.")    
+       
     try:
         data = fetch_ocm_au(api_key)
         df = normalise_ocm(data)
