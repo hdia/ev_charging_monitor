@@ -165,10 +165,9 @@ def fetch_ocm_au(api_key: str | None) -> list[dict]:
     headers = {
         "User-Agent": "AustralianEVChargingMonitor/1.0 (academic research; contact: hdia@swin.edu.au)",
         "Accept": "application/json",
-    }    
-
+    }
     if api_key:
-        params["key"] = api_key
+        headers["X-API-Key"] = api_key
 
     print(">> Fetching live data from Open Charge Map...")
 
