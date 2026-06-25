@@ -161,16 +161,41 @@ def fetch_ocm_au(api_key: str | None) -> list[dict]:
         "maxresults": str(MAXRESULTS),
         "include": "connections,operatorinfo,usagetype,statustype"
     }
-    headers = {"X-API-Key": api_key} if api_key else {}
+
+    headers = {
+        "User-Agent": "AustralianEVChargingMonitor/1.0 (academic research; contact: hdia@swin.edu.au)",
+        "Accept": "application/json",
+    }
+    if api_key:
+        headers["X-API-Key"] = api_key
+
     print(">> Fetching live data from Open Charge Map...")
-    r = requests.get(OCM_URL, params=params, headers=headers, timeout=HTTP_TIMEOUT)
-    print(">> HTTP", r.status_code)
-    r.raise_for_status()
-    data = r.json()
-    if not isinstance(data, list):
-        raise RuntimeError("Unexpected OCM response type")
-    print(f">> Received {len(data)} items")
-    return data
+
+    last_error = None
+    for attempt in range(3):
+        try:
+            print(f">> OCM request attempt {attempt + 1}/3")
+            r = requests.get(OCM_URL, params=params, headers=headers, timeout=120)
+            print(">> HTTP", r.status_code)
+            r.raise_for_status()
+            data = r.json()
+
+            if not isinstance(data, list):
+                raise RuntimeError("Unexpected OCM response type")
+
+            print(f">> Received {len(data)} items")
+            return data
+
+        except requests.exceptions.ReadTimeout as e:
+            last_error = e
+            print(f"!! OCM read timeout on attempt {attempt + 1}/3")
+
+        except requests.exceptions.HTTPError as e:
+            last_error = e
+            print(f"!! OCM HTTP error on attempt {attempt + 1}/3: {e}")
+            raise
+
+    raise last_error
 
 
 def normalise_ocm(pois: list[dict]) -> pd.DataFrame:
@@ -1049,7 +1074,9 @@ document.getElementById('btn-clear').addEventListener('click', function() {{
 
     m.save(str(OUTPUT_HTML))
     print(f">> Map saved to {OUTPUT_HTML.resolve()}")
-       
+
+
+
 # ============================================================
 # 6) Main
 # ============================================================
@@ -1057,10 +1084,16 @@ def main():
     print(">> Australian EV Charging Atlas (v6)")
     ensure_dirs()
     load_dotenv()
-    api_key = os.getenv("OCM_API_KEY", "").strip()
-    if api_key: print(">> Using OCM_API_KEY (loaded from .env)")
-    else: print("!! No OCM_API_KEY found. Proceeding without header.")
 
+    api_key = os.getenv("OCM_API_KEY", "").strip()
+
+    if api_key:
+        print(">> Using OCM_API_KEY (loaded from .env)")
+        print(f">> OCM_API_KEY length: {len(api_key)}")
+        print(f">> OCM_API_KEY last 4 chars: {api_key[-4:]}")
+    else:
+        print("!! No OCM_API_KEY found. Proceeding without API key.")    
+       
     try:
         data = fetch_ocm_au(api_key)
         df = normalise_ocm(data)
