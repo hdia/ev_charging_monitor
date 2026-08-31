@@ -436,6 +436,11 @@ def color_dot_hex(hex_color: str) -> str:
 # 5) Build map
 # ============================================================
 def build_map(df: pd.DataFrame, last_refresh: str, next_refresh: str):
+    carto_api_key = os.getenv("CARTO_API_KEY", "").strip()
+    if carto_api_key:
+        print(">> Using CARTO_API_KEY for basemap")
+    else:
+        print("!! No CARTO_API_KEY found")
     status_counts = df["status_simple"].value_counts(dropna=False).to_dict()
     tot_sites = len(df)
     n_oper = int(status_counts.get("operational", 0))
@@ -506,11 +511,30 @@ def build_map(df: pd.DataFrame, last_refresh: str, next_refresh: str):
     m = Map(location=(MAP_START["lat"], MAP_START["lon"]), zoom_start=MAP_START["zoom"],
             tiles=None, control_scale=True, max_bounds=False)
     fig.add_child(m)
+        
 
-    TileLayer(tiles="https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png",
-              attr='&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>',
-              name="Carto Light", control=True, show=True, no_wrap=False).add_to(m)
-    TileLayer(tiles="OpenStreetMap", name="OpenStreetMap", control=True, show=False, no_wrap=False).add_to(m)
+    carto_tiles = (
+    "https://basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}.png"
+    f"?key={carto_api_key}"
+    )
+
+    TileLayer(
+        tiles=carto_tiles,
+        attr='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> '
+             '&copy; <a href="https://carto.com/">CARTO</a>',
+        name="Carto Light",
+        control=True,
+        show=True,
+        no_wrap=False
+    ).add_to(m)
+
+    TileLayer(
+        tiles="OpenStreetMap",
+        name="OpenStreetMap",
+        control=True,
+        show=False,
+        no_wrap=False
+    ).add_to(m)
 
     inject_label_css(m)
 
