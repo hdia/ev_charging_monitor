@@ -172,16 +172,52 @@ def fetch_ocm_au(api_key: str | None) -> list[dict]:
     print(">> Fetching live data from Open Charge Map...")
 
     last_error = None
+
     for attempt in range(3):
         try:
             print(f">> OCM request attempt {attempt + 1}/3")
-            r = requests.get(OCM_URL, params=params, headers=headers, timeout=120)
+
+            r = requests.get(
+                OCM_URL,
+                params=params,
+                headers=headers,
+                timeout=120
+            )
+
             print(">> HTTP", r.status_code)
             r.raise_for_status()
-            data = r.json()
+
+            try:
+                data = r.json()
+            except requests.exceptions.JSONDecodeError as e:
+                last_error = e
+
+                preview = (r.text or "")[:200].replace("\n", " ")
+                print(
+                    f"!! OCM returned a non-JSON response "
+                    f"on attempt {attempt + 1}/3"
+                )
+                print(f"!! Response preview: {preview!r}")
+
+                if attempt == 2:
+                    raise
+
+                continue
 
             if not isinstance(data, list):
-                raise RuntimeError("Unexpected OCM response type")
+                last_error = RuntimeError(
+                    f"Unexpected OCM response type: {type(data).__name__}"
+                )
+
+                print(
+                    f"!! Unexpected OCM response type on attempt "
+                    f"{attempt + 1}/3: {type(data).__name__}"
+                )
+
+                if attempt == 2:
+                    raise last_error
+
+                continue
 
             print(f">> Received {len(data)} items")
             return data
@@ -190,12 +226,27 @@ def fetch_ocm_au(api_key: str | None) -> list[dict]:
             last_error = e
             print(f"!! OCM read timeout on attempt {attempt + 1}/3")
 
+            if attempt == 2:
+                raise
+
         except requests.exceptions.HTTPError as e:
             last_error = e
             print(f"!! OCM HTTP error on attempt {attempt + 1}/3: {e}")
-            raise
 
-    raise last_error
+            if attempt == 2:
+                raise
+
+        except requests.exceptions.RequestException as e:
+            last_error = e
+            print(f"!! OCM request error on attempt {attempt + 1}/3: {e}")
+
+            if attempt == 2:
+                raise
+
+    if last_error is not None:
+        raise last_error
+
+    raise RuntimeError("OCM request failed for an unknown reason")
 
 
 def normalise_ocm(pois: list[dict]) -> pd.DataFrame:
